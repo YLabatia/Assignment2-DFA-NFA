@@ -1,1 +1,1 @@
-# Regex
+# Assignment 2 (DFA-NFA)
