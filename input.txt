@@ -1,9 +1,8 @@
 1
-aaaa
+ab
 ba
 aba
-bbba
-aaabbb
+bbb
 end
 
 2
