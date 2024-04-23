@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.logging.FileHandler;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Main {
@@ -29,43 +27,57 @@ public class Main {
             switch (problemNumber.trim()){
                 case "1" :{
                     writer.println("1");
-                    functionCaller(Main::problem1 , "valid email" , "invalid email"); //calls function inside it
+                    functionCaller(Main::problem1 , "False" , "True"); //calls function inside it
                     writer.println("x");
                     break;
                 }
                 case "2" :{
                     writer.println("2");
-                    functionCaller(Main::problem2 , "valid phone number" , "invalid phone number");
                     writer.println("x");
                     break;
                 }
                 case "3" :{
                     writer.println("3");
-                    functionCaller(Main::problem3 , "valid date" , "invalid date");
                     writer.println("x");
                     break;
                 }
                 case "4" :{
+                    writer.println("4");
+                    writer.println("x");
+                    break;
 
                 }
                 case "5" :{
-
+                    writer.println("5");
+                    writer.println("x");
                     break;
+
+
                 }
                 case "6" :{
+                    writer.println("6");
+                    writer.println("x");
 
                     break;
                 }
                 case "7" :{
+                    writer.println("7");
+                    writer.println("x");
                     break;
                 }
                 case "8" :{
+                    writer.println("8");
+                    writer.println("x");
                     break;
                 }
                 case "9" :{
+                    writer.println("9");
+                    writer.println("x");
                     break;
                 }
                 case "10" :{
+                    writer.println("10");
+                    writer.println("x");
                     break;
                 } default:{
                     System.out.println("Could not read properly from file!");
@@ -88,19 +100,41 @@ public class Main {
             }
         }
     }
-    public static boolean match(String regex,String expression){
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(expression);
+    public static boolean problem1(String input){
+        final int Q0 = 0; // Initial state
+        final int Q1 = 1; // Final (accepting) state
+        final int Q2 = 2; // State after seeing 'b'
 
-        if ( matcher.matches()) {
-            return true;
+        int currentState = Q0;
+
+        for (char ch : input.toCharArray()) {
+            switch (currentState) {
+                case Q0:
+                    if (ch == 'a') {
+                        currentState = Q0;
+                    } else if (ch == 'b') {
+                        currentState = Q1;
+                    }
+                    break;
+                case Q1:
+                    if (ch == 'a') {
+                        currentState = Q2;
+                    } else if (ch == 'b') {
+                        currentState = Q0;
+                    }
+                    break;
+                case Q2:
+                    if (ch == 'a') {
+                        currentState = Q2;
+                    } else if (ch == 'b') {
+                        currentState = Q2;
+                    }
+                    break;
+            }
         }
-        return false;
+        return currentState == Q2; // Check if the input went to the trap Q2
     }
 
-    public static boolean problem1(String expression){
-        return false;
-    }
     public static boolean problem2(String expression){
         return false;
     }
