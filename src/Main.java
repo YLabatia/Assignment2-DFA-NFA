@@ -1,9 +1,8 @@
-import java.io.FileNotFoundException;
 import java.io.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Predicate;
-import java.util.logging.FileHandler;
 
 
 public class Main {
@@ -108,7 +107,7 @@ public class Main {
 
     //calls function inside it , instead of repeating loop code in every case
     public static void functionCaller(Predicate<String> problemFunction, String acceptString, String rejectString) throws IOException {
-        String input = "";
+        String input ;
         while (scanner.hasNextLine() && !(input = scanner.nextLine().toLowerCase()).equals("end")) {
             if (problemFunction.test(input)) { //calls function
                 writer.println(acceptString);
@@ -240,7 +239,54 @@ public class Main {
     }
 
     public static boolean problem7(String expression) {
-        return false;
+        ArrayList<Character> finalStates = new ArrayList<Character>();
+        finalStates.add('A');
+        finalStates.add('B');
+        finalStates.add('C');
+        finalStates.add('E');
+        finalStates.add('G');
+        char currentState = 'A';
+        for (char bit : expression.toCharArray()){
+            switch (currentState){
+                case 'A':{
+                    if(bit == '0')
+                        currentState = 'B';
+                    else
+                        currentState = 'C';
+                    break;
+                }
+                case 'B':{//if 0 -> loop on same state
+                    if(bit == '1')
+                        currentState = 'D';
+
+                    break;
+                }
+                case 'C':{//if 1 -> loop on same state
+                    if(bit == '0')
+                        currentState = 'F';
+
+                    break;
+                }
+                case 'D':{
+                    if(bit == '0')//if 1 -> loop on same state
+                        currentState = 'B';
+
+                    break;
+                }
+                case 'F':{ //if 0 -> loop on same state
+                    if(bit == '1')
+                        currentState = 'C';
+
+                    break;
+                }
+                default:{
+                    System.out.println("Problem in reading input of problem 7");
+                    break;
+                }
+            }
+        }
+
+        return finalStates.contains(currentState);
     }
 
     public static boolean problem8(String expression) {
@@ -287,7 +333,6 @@ public class Main {
 //        }
 //        else return false;
 
-        //return problem9Recursive(expression, idx +1); //revisit initial state
     }
 
     public static boolean problem10(String expression) {
