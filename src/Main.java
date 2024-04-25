@@ -22,66 +22,83 @@ public class Main {
         String problemNumber = "";
 
 
-        while (problemNumber != null){
-            problemNumber = scanner.nextLine();
-            switch (problemNumber.trim()){
-                case "1" :{
+        while (problemNumber != null) {
+
+            if(scanner.hasNextLine())
+                problemNumber = scanner.nextLine();
+
+            else
+                break;
+            //System.out.println(problemNumber);
+            switch (problemNumber.trim()) {
+                case "1": {
                     writer.println("1");
-                    functionCaller(Main::problem1 , "False" , "True"); //calls function inside it
-                    writer.println("x");
+                    functionCaller(Main::problem1, "False", "True"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "2" :{
+                case "2": {
                     writer.println("2");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "3" :{
+                case "3": {
                     writer.println("3");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "4" :{
+                case "4": {
                     writer.println("4");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
 
                 }
-                case "5" :{
+                case "5": {
                     writer.println("5");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
 
 
                 }
-                case "6" :{
+                case "6": {
                     writer.println("6");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
 
                     break;
                 }
-                case "7" :{
+                case "7": {
                     writer.println("7");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "8" :{
+                case "8": {
                     writer.println("8");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "9" :{
+                case "9": {
                     writer.println("9");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
                 }
-                case "10" :{
+                case "10": {
                     writer.println("10");
-                    writer.println("x");
+                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    writer.println("x\n");
                     break;
-                } default:{
+                }
+                default: {
+                    System.out.println("in default " + problemNumber);
                     System.out.println("Could not read properly from file!");
-                            writer.close();
+                    writer.close();
                     return;
                 }
             }
@@ -90,17 +107,20 @@ public class Main {
     }
 
     //calls function inside it , instead of repeating loop code in every case
-    public static void functionCaller(Predicate<String> problemFunction , String acceptString ,String rejectString) throws IOException {
-        String input ="";
-        while (scanner.hasNextLine() && !(input = scanner.nextLine()).equals("end")){
-            if(problemFunction.test(input)){ //calls function
+    public static void functionCaller(Predicate<String> problemFunction, String acceptString, String rejectString) throws IOException {
+        String input = "";
+        while (scanner.hasNextLine() && !(input = scanner.nextLine().toLowerCase()).equals("end")) {
+            if (problemFunction.test(input)) { //calls function
                 writer.println(acceptString);
-            }else{
+            } else {
                 writer.println(rejectString);
             }
         }
+        if(scanner.hasNextLine())
+            scanner.nextLine(); //added to read properly from file
     }
-    public static boolean problem1(String input){
+
+    public static boolean problem1(String input) {
         final int Q0 = 0; // Initial state
         final int Q1 = 1; // Final (accepting) state
         final int Q2 = 2; // State after seeing 'b'
@@ -135,31 +155,39 @@ public class Main {
         return currentState == Q2; // Check if the input went to the trap Q2
     }
 
-    public static boolean problem2(String expression){
+    public static boolean problem2(String expression) {
         return false;
     }
-    public static boolean problem3(String expression){
+
+    public static boolean problem3(String expression) {
         return false;
     }
-    public static boolean problem4(String expression){
+
+    public static boolean problem4(String expression) {
         return false;
     }
-    public static boolean problem5(String expression){
+
+    public static boolean problem5(String expression) {
         return false;
     }
-    public static boolean problem6(String expression){
+
+    public static boolean problem6(String expression) {
         return false;
     }
-    public static boolean problem7(String expression){
+
+    public static boolean problem7(String expression) {
         return false;
     }
-    public static boolean problem8(String expression){
+
+    public static boolean problem8(String expression) {
         return false;
     }
-    public static boolean problem9(String expression){
+
+    public static boolean problem9(String expression) {
         return false;
     }
-    public static boolean problem10(String expression){
+
+    public static boolean problem10(String expression) {
         return false;
     }
 }
