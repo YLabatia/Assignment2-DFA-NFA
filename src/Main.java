@@ -24,7 +24,7 @@ public class Main {
 
         while (problemNumber != null) {
 
-            if(scanner.hasNextLine())
+            if (scanner.hasNextLine())
                 problemNumber = scanner.nextLine();
 
             else
@@ -39,26 +39,26 @@ public class Main {
                 }
                 case "2": {
                     writer.println("2");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem2, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "3": {
                     writer.println("3");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem3, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "4": {
                     writer.println("4");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem4, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
                 }
                 case "5": {
                     writer.println("5");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem5, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
@@ -66,26 +66,26 @@ public class Main {
                 }
                 case "6": {
                     writer.println("6");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem6, "False", "False"); //calls function inside it
                     writer.println("x\n");
 
                     break;
                 }
                 case "7": {
                     writer.println("7");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem7, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "8": {
                     writer.println("8");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem8, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "9": {
                     writer.println("9");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem9, "False", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
@@ -116,7 +116,7 @@ public class Main {
                 writer.println(rejectString);
             }
         }
-        if(scanner.hasNextLine())
+        if (scanner.hasNextLine())
             scanner.nextLine(); //added to read properly from file
     }
 
@@ -180,10 +180,26 @@ public class Main {
     }
 
     public static boolean problem8(String expression) {
-        return false;
+        return problem8Recursive(expression, 0);
+    }
+
+    public static boolean problem8Recursive(String expression, int idx) {
+        if (idx + 2 >= expression.length()) {
+            return false;
+        }
+        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1' && expression.charAt(idx + 2) == '0') {
+            //System.out.println("Found 010 at index = " + idx);
+            return true;
+        }
+        if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0' && expression.charAt(idx + 2) == '1') {
+            //System.out.println("Found 101 at index = " + idx);
+            return true;
+        }
+        return problem8Recursive(expression, idx + 1);
     }
 
     public static boolean problem9(String expression) {
+
         return false;
     }
 

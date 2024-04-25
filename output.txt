@@ -48,9 +48,9 @@ False
 x
 
 8
-False
-False
-False
+True
+True
+True
 False
 x
 
