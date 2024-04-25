@@ -6,17 +6,17 @@ True
 x
 
 2
-False
-False
+True
+True
 False
 False
 x
 
 3
+True
+True
 False
-False
-False
-False
+True
 x
 
 4

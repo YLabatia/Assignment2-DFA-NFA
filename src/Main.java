@@ -33,19 +33,19 @@ public class Main {
             switch (problemNumber.trim()) {
                 case "1": {
                     writer.println("1");
-                    functionCaller(Main::problem1, "False", "True"); //calls function inside it
+                    functionCaller(Main::problem1, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "2": {
                     writer.println("2");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem2, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "3": {
                     writer.println("3");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem3, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
@@ -121,8 +121,8 @@ public class Main {
     }
 
     public static boolean problem1(String input) {
-        final int Q0 = 0; // Initial state
-        final int Q1 = 1; // Final (accepting) state
+        final int Q0 = 0; // Initial state and final state1
+        final int Q1 = 1; // Final (accepting) state2
         final int Q2 = 2; // State after seeing 'b'
 
         int currentState = Q0;
@@ -140,7 +140,7 @@ public class Main {
                     if (ch == 'a') {
                         currentState = Q2;
                     } else if (ch == 'b') {
-                        currentState = Q0;
+                        currentState = Q1;
                     }
                     break;
                 case Q2:
@@ -152,15 +152,79 @@ public class Main {
                     break;
             }
         }
-        return currentState == Q2; // Check if the input went to the trap Q2
+        return (currentState == Q1 || currentState == Q0 ); // Check if the input went to the accepted state
     }
 
-    public static boolean problem2(String expression) {
-        return false;
+    public static boolean problem2(String input) {
+        final int Q0 = 0; // Initial state
+        final int Q1 = 1; // Final (accepting) state
+        final int Q2 = 2;
+        final int Q3 = 3;// trap state
+
+        int currentState = Q0;
+
+        for (char ch : input.toCharArray()) {
+            switch (currentState) {
+                case Q0:
+                    if (ch == '1') {
+                        currentState = Q1;
+                    } else if (ch == '0') {
+                        currentState = Q2;
+                    }
+                    break;
+                case Q1:
+                    if (ch == '1') {
+                        currentState = Q3;
+                    } else if (ch == '0') {
+                        currentState = Q3;
+                    }
+                    break;
+                case Q2:
+                    if (ch == '0') {
+                        currentState = Q0;
+                    } else if (ch == '1') {
+                        currentState = Q3;
+                    }
+                    break;
+                case Q3:
+                    if (ch == '0') {
+                        currentState = Q3;
+                    } else if (ch == '1') {
+                        currentState = Q3;
+                    }
+                    break;
+            }
+        }
+        return currentState == Q1; // Check if the input went to the accepted state;
     }
 
-    public static boolean problem3(String expression) {
-        return false;
+    public static boolean problem3(String input) {
+
+        final int Q0 = 0; // Initial state
+        final int Q1 = 1; // Final (accepting) state
+
+
+        int currentState = Q0;
+
+        for (char ch : input.toCharArray()) {
+            switch (currentState) {
+                case Q0:
+                    if (ch == 'x') {
+                        currentState = Q1;
+                    } else if (ch == 'y') {
+                        currentState = Q0;
+                    }
+                    break;
+                case Q1:
+                    if (ch == 'x') {
+                        currentState = Q0;
+                    } else if (ch == 'y') {
+                        currentState = Q1;
+                    }
+                    break;
+            }
+        }
+        return currentState == Q1; // Check if the input went to the accepted state Q1
     }
 
     public static boolean problem4(String expression) {
