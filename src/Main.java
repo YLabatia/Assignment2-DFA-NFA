@@ -243,8 +243,7 @@ public class Main {
         finalStates.add('A');
         finalStates.add('B');
         finalStates.add('C');
-        finalStates.add('E');
-        finalStates.add('G');
+
         char currentState = 'A';
         for (char bit : expression.toCharArray()){
             switch (currentState){
@@ -263,7 +262,7 @@ public class Main {
                 }
                 case 'C':{//if 1 -> loop on same state
                     if(bit == '0')
-                        currentState = 'F';
+                        currentState = 'E';
 
                     break;
                 }
@@ -273,7 +272,7 @@ public class Main {
 
                     break;
                 }
-                case 'F':{ //if 0 -> loop on same state
+                case 'E':{ //if 0 -> loop on same state
                     if(bit == '1')
                         currentState = 'C';
 
