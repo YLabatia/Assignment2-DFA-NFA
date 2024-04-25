@@ -227,15 +227,50 @@ public class Main {
     }
 
     public static boolean problem4(String expression) {
-        return false;
+        boolean answer = true;
+        if(expression.charAt(0) == 'a'){
+            if(expression.charAt(expression.length()-1) != 'a'){
+                answer = false;
+            }
+        }
+        else{
+            if(expression.charAt(expression.length()-1) != 'b'){
+                answer = false;
+            }
+        }
+        return answer;
     }
 
     public static boolean problem5(String expression) {
-        return false;
+        boolean answer = true;
+        int i=0, size = expression.length();
+        if(expression.charAt(i++) == '1'){
+            if(size < 3 || expression.charAt(size-1) != '0' || expression.charAt(size-2) != '0'){
+                answer = false;
+            }
+        }
+        else{
+            while(i < size && expression.charAt(i) != '1'){
+                i++;
+            }
+            if(i < expression.length() && (size == 2 || (expression.charAt(size-1) != '0' || expression.charAt(size-2) != '0'))){
+                answer = false;
+            }
+        }
+        return answer;
     }
 
     public static boolean problem6(String expression) {
-        return false;
+        boolean answer = true;
+        int i=0, size = expression.length();
+        if(expression.charAt(i++) == '1'){
+            if(i < size && expression.charAt(i++) == '1'){
+                if(i == size || (i == size - 1 && expression.charAt(i) == '1')){
+                    answer = false;
+                }
+            }
+        }
+        return answer;
     }
 
     public static boolean problem7(String expression) {
