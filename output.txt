@@ -55,10 +55,11 @@ False
 x
 
 9
+True
+True
+True
 False
-False
-False
-False
+True
 x
 
 10

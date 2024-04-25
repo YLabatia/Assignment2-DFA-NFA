@@ -39,26 +39,26 @@ public class Main {
                 }
                 case "2": {
                     writer.println("2");
-                    functionCaller(Main::problem2, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem2, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "3": {
                     writer.println("3");
-                    functionCaller(Main::problem3, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem3, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "4": {
                     writer.println("4");
-                    functionCaller(Main::problem4, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem4, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
                 }
                 case "5": {
                     writer.println("5");
-                    functionCaller(Main::problem5, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem5, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
@@ -66,14 +66,14 @@ public class Main {
                 }
                 case "6": {
                     writer.println("6");
-                    functionCaller(Main::problem6, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem6, "True", "False"); //calls function inside it
                     writer.println("x\n");
 
                     break;
                 }
                 case "7": {
                     writer.println("7");
-                    functionCaller(Main::problem7, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem7, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
@@ -85,13 +85,13 @@ public class Main {
                 }
                 case "9": {
                     writer.println("9");
-                    functionCaller(Main::problem9, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem9, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "10": {
                     writer.println("10");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem10, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
@@ -195,12 +195,30 @@ public class Main {
             //System.out.println("Found 101 at index = " + idx);
             return true;
         }
-        return problem8Recursive(expression, idx + 1);
+        return problem8Recursive(expression, idx + 1); // stay in initial state
     }
 
-    public static boolean problem9(String expression) {
 
-        return false;
+    public static boolean problem9(String expression) {
+        // NFA: each 2 chars we go to the initial state
+        return problem9Recursive(expression, 0);
+    }
+
+    public static boolean problem9Recursive(String expression, int idx) {
+
+
+        if (idx + 1 >= expression.length()) { //expression ended
+            return true; //it reached the final state properly without exiting early
+        }
+        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1') {
+            return problem9Recursive(expression, idx +1);
+        }
+        else if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0') {
+            return problem9Recursive(expression, idx +1);
+        }
+        else return false;
+
+        //return problem9Recursive(expression, idx +1); //revisit initial state
     }
 
     public static boolean problem10(String expression) {
