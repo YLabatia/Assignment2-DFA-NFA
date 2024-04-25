@@ -210,13 +210,18 @@ public class Main {
         if (idx + 1 >= expression.length()) { //expression ended
             return true; //it reached the final state properly without exiting early
         }
-        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1') {
-            return problem9Recursive(expression, idx +1);
+        if (expression.charAt(idx) == expression.charAt(idx + 1)) { //failed state
+            return false;
         }
-        else if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0') {
-            return problem9Recursive(expression, idx +1);
-        }
-        else return false;
+        return problem9Recursive(expression, idx +1); //continue iterating on the string
+
+//        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1') {
+//            return problem9Recursive(expression, idx +1);
+//        }
+//        else if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0') {
+//            return problem9Recursive(expression, idx +1);
+//        }
+//        else return false;
 
         //return problem9Recursive(expression, idx +1); //revisit initial state
     }
