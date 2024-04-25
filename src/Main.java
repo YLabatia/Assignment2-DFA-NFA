@@ -24,7 +24,7 @@ public class Main {
 
         while (problemNumber != null) {
 
-            if(scanner.hasNextLine())
+            if (scanner.hasNextLine())
                 problemNumber = scanner.nextLine();
 
             else
@@ -51,14 +51,14 @@ public class Main {
                 }
                 case "4": {
                     writer.println("4");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem4, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
                 }
                 case "5": {
                     writer.println("5");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem5, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
 
@@ -66,32 +66,32 @@ public class Main {
                 }
                 case "6": {
                     writer.println("6");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem6, "True", "False"); //calls function inside it
                     writer.println("x\n");
 
                     break;
                 }
                 case "7": {
                     writer.println("7");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem7, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "8": {
                     writer.println("8");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem8, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "9": {
                     writer.println("9");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem9, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
                 case "10": {
                     writer.println("10");
-                    functionCaller(Main::problem10, "False", "False"); //calls function inside it
+                    functionCaller(Main::problem10, "True", "False"); //calls function inside it
                     writer.println("x\n");
                     break;
                 }
@@ -116,7 +116,7 @@ public class Main {
                 writer.println(rejectString);
             }
         }
-        if(scanner.hasNextLine())
+        if (scanner.hasNextLine())
             scanner.nextLine(); //added to read properly from file
     }
 
@@ -244,15 +244,75 @@ public class Main {
     }
 
     public static boolean problem8(String expression) {
-        return false;
+        return problem8Recursive(expression, 0);
     }
 
+    public static boolean problem8Recursive(String expression, int idx) {
+        if (idx + 2 >= expression.length()) {
+            return false;
+        }
+        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1' && expression.charAt(idx + 2) == '0') {
+            //System.out.println("Found 010 at index = " + idx);
+            return true;
+        }
+        if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0' && expression.charAt(idx + 2) == '1') {
+            //System.out.println("Found 101 at index = " + idx);
+            return true;
+        }
+        return problem8Recursive(expression, idx + 1); // stay in initial state
+    }
+
+
     public static boolean problem9(String expression) {
-        return false;
+        // NFA: each 2 chars we go to the initial state
+        return problem9Recursive(expression, 0);
+    }
+
+    public static boolean problem9Recursive(String expression, int idx) {
+
+
+        if (idx + 1 >= expression.length()) { //expression ended
+            return true; //it reached the final state properly without exiting early
+        }
+        if (expression.charAt(idx) == expression.charAt(idx + 1)) { //failed state
+            return false;
+        }
+        return problem9Recursive(expression, idx + 1); //continue iterating on the string
+
+//        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1') {
+//            return problem9Recursive(expression, idx +1);
+//        }
+//        else if (expression.charAt(idx) == '1' && expression.charAt(idx + 1) == '0') {
+//            return problem9Recursive(expression, idx +1);
+//        }
+//        else return false;
+
+        //return problem9Recursive(expression, idx +1); //revisit initial state
     }
 
     public static boolean problem10(String expression) {
-        return false;
+        return problem10Recursive(expression, 0);
     }
+
+    public static boolean problem10Recursive(String expression, int idx) {
+        if (expression.charAt(idx) == '0') { //must be followed by at least one 1
+            if (idx + 1 >= expression.length()) //expression ended on a 0 , so it failed
+                return false;
+            if(expression.charAt(idx +1 )=='0') //found 2 consecutive zeros
+                return false;
+            else
+                return problem10Recursive(expression , idx+1);//continue checking from initial state
+
+
+        } else {
+            if (idx + 1 >= expression.length()) //expression ended
+                return true;
+
+            else
+                return problem10Recursive(expression , idx+1); // stay at initial state
+        }
+
+    }
+
 }
 

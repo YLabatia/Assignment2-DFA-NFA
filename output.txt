@@ -48,22 +48,24 @@ False
 x
 
 8
-False
-False
-False
+True
+True
+True
 False
 x
 
 9
+True
+True
+True
 False
-False
-False
-False
+True
 x
 
 10
-False
-False
+True
+True
+True
 False
 False
 x
