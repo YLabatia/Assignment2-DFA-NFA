@@ -213,7 +213,7 @@ public class Main {
         if (expression.charAt(idx) == expression.charAt(idx + 1)) { //failed state
             return false;
         }
-        return problem9Recursive(expression, idx +1); //continue iterating on the string
+        return problem9Recursive(expression, idx + 1); //continue iterating on the string
 
 //        if (expression.charAt(idx) == '0' && expression.charAt(idx + 1) == '1') {
 //            return problem9Recursive(expression, idx +1);
@@ -227,7 +227,28 @@ public class Main {
     }
 
     public static boolean problem10(String expression) {
-        return false;
+        return problem10Recursive(expression, 0);
     }
+
+    public static boolean problem10Recursive(String expression, int idx) {
+        if (expression.charAt(idx) == '0') { //must be followed by at least one 1
+            if (idx + 1 >= expression.length()) //expression ended on a 0 , so it failed
+                return false;
+            if(expression.charAt(idx +1 )=='0') //found 2 consecutive zeros
+                return false;
+            else
+                return problem10Recursive(expression , idx+1);//continue checking from initial state
+
+
+        } else {
+            if (idx + 1 >= expression.length()) //expression ended
+                return true;
+
+            else
+                return problem10Recursive(expression , idx+1); // stay at initial state
+        }
+
+    }
+
 }
 
